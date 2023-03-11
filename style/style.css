@@ -1,0 +1,273 @@
+@charset "UTF-8";
+.bg-red {
+  background-color: #ff0000;
+}
+
+.bg-yellow {
+  background-color: #ffff00;
+}
+
+.bg-black {
+  background-color: #ffff00;
+}
+
+.nested-rules {
+  border: 1px solid #aea8a8;
+}
+.nested-rules li {
+  background-color: #eee;
+  padding: 4px;
+}
+.nested-rules li span {
+  color: #94151d;
+  border: 1px solid #766767;
+}
+.nested-rules li button {
+  color: #7fffd4;
+  border-radius: 4px;
+}
+
+.container-header {
+  font-size: 24px;
+  color: #94151d;
+}
+
+.container-desc {
+  font-size: 11px;
+  background-color: #f0ffff;
+}
+
+.mixin-and-include {
+  margin-top: 5px;
+  border: 1px solid #aea8a8;
+  padding: 8px;
+}
+.mixin-and-include .btn-save {
+  border-radius: 4px;
+  color: #fff;
+  padding: 3px;
+  cursor: pointer;
+  background-color: #0b17ba;
+  font-size: 13px;
+}
+.mixin-and-include .btn-cancel {
+  border-radius: 4px;
+  color: #fff;
+  padding: 3px;
+  cursor: pointer;
+  background-color: #94151d;
+  font-size: 8px;
+}
+
+.card, .extend .card-2, .extend .card-1 {
+  border: 1px solid #eee;
+  color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 8px 0 rgba(72, 70, 70, 0.8);
+}
+
+.extend {
+  margin-top: 12px;
+  border: 1px solid #2d1d1d;
+}
+.extend .card-1 {
+  background-color: #0b17ba;
+}
+.extend .card-2 {
+  background-color: #ff0000;
+}
+
+.string-func, .introspection-func, .selector-func, .list-func, .numeric-func {
+  border: 1px solid gray;
+  margin-top: 8px;
+}
+.string-func h3, .introspection-func h3, .selector-func h3, .list-func h3, .numeric-func h3 {
+  text-align: center;
+}
+.string-func ul, .introspection-func ul, .selector-func ul, .list-func ul, .numeric-func ul {
+  padding: 0 10px;
+}
+.string-func ul li, .introspection-func ul li, .selector-func ul li, .list-func ul li, .numeric-func ul li {
+  list-style: none;
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+.quote::after {
+  content: "Assigning content to element";
+}
+
+.str-index::after {
+  content: "12";
+}
+
+.str-insert::after {
+  content: "Adding (WORD) words to a sentence";
+}
+
+.str-length::after {
+  content: "48";
+}
+
+.str-slice::after {
+  content: "(TEST) ";
+}
+
+.to-lower-case::after {
+  content: "makes all characters lowercase";
+}
+
+.to-upper-case::after {
+  content: "CAPITALIZES ALL CHARACTERS";
+}
+
+.unique-id::after {
+  content: "unr7dyh";
+}
+
+.unquote::after {
+  content: "Changes the content";
+}
+
+.abs::after {
+  content: "10";
+}
+
+.ceil::after {
+  content: "14";
+}
+
+.floor::after {
+  content: "13";
+}
+
+.round::after {
+  content: "13";
+}
+
+.max::after {
+  content: "8";
+}
+
+.min::after {
+  content: "-1";
+}
+
+.percentage::after {
+  content: "1125%";
+}
+
+.random::after {
+  content: "0.7997792418";
+}
+
+.random2::after {
+  content: "43";
+}
+
+.comparable::after {
+  content: "false";
+}
+
+.list-func .append::after {
+  content: "1 2 3 5 8";
+}
+.list-func .index::after {
+  content: "4";
+}
+.list-func .is-bracketed::after {
+  content: "true";
+}
+.list-func .join::after {
+  content: "[1 2 3 4 5 6]";
+}
+.list-func .length::after {
+  content: "6";
+}
+.list-func .list-separator::after {
+  content: "comma";
+}
+.list-func .nth::after {
+  content: "X";
+}
+.list-func .set-nth::after {
+  content: "a, y, 3, z, Y, 15";
+}
+.list-func .zip::after {
+  content: "Ahmet Yıldız 13, Hasan Bakır 27, Kasım Yurt 21";
+}
+
+/*
+.map-func {
+    @extend .string-func;
+
+    .map-get::after {
+        content: '' + map-get($map: $colors, $key: description); // Belirtilen listede key kısmına karşılık gelen elemanın value kısmını verir.
+    }
+
+    .map-has-key::after {
+        content: '' + map-has-key($map: $colors, $key: header); // Belirtilen liste içerisinde header key kısmına sahip eleman var mı kontrolünü yapar.
+    }
+
+    .map-keys::after {
+        content: '' + map-keys($map: $colors); // Belirtilen listedeki key kısımlarını verir.
+    }
+
+    .map-values::after {
+        content: '' + map-values($map: $colors); // Belirtilen listedeki value kısımlarını verir.
+    }
+
+    .map-merge::after {
+        content: '' + map-merge(("red": #ff0000, "green": #00ff00), ("blue": #0000ff)) // iki listeyi key ve value ile birlikte birleştirir.
+    }
+
+    .map-remove::after {
+        content: '' + map-remove($map: $colors, $keys: header ); // Listede key kısmına karşılık gelen elemanı siler ve listeyi verir.
+    }
+}*/
+.selector-func .selector-superselector::after {
+  content: "true";
+}
+.selector-func .selector-append::after {
+  content: "p.foo";
+}
+.selector-func .selector-nest::after {
+  content: "p h1 .foo";
+}
+.selector-func .selector-parse::after {
+  content: "p .a .b .c";
+}
+.selector-func .selector-replace::after {
+  content: "p .bold";
+}
+.selector-func .selector-unify::after {
+  content: "p.temp";
+}
+.selector-func .simple-selector::after {
+  content: "p, .b, .d";
+}
+
+.introspection-func .variable-exists:after {
+  content: "false";
+}
+.introspection-func .global-variable-exists::after {
+  content: "false";
+}
+.introspection-func .mixin-exists::after {
+  content: "false";
+}
+.introspection-func .inspect::after {
+  content: "12";
+}
+.introspection-func .type-of::after {
+  content: "list";
+}
+.introspection-func .unit::after {
+  content: "em";
+}
+.introspection-func .unitless::after {
+  content: "false";
+}
+.introspection-func .comparable::after {
+  content: "false";
+}/*# sourceMappingURL=style.css.map */

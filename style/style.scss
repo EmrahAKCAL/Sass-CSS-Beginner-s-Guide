@@ -1,0 +1,341 @@
+
+// variable assignment
+$Color_red: #ff0000;
+.bg-red {
+    background-color: $Color_red;
+}
+.bg-yellow {
+    $Color_red: #ffff00 !global; // !global bundan sonra $Color_red çağrıldığında rengi artık sarı olacaktır.
+    background-color: $Color_red;
+}
+
+.bg-black {
+    background-color: $Color_red;
+}
+
+// nested rules
+
+.nested-rules {
+    border: 1px solid #aea8a8;
+
+    li {
+        background-color: #eee;
+        padding: 4px;
+
+        span {
+            color: #94151d;
+            border: 1px solid #766767;
+        }
+
+        button {
+            color: #7fffd4;
+            border-radius: 4px;
+        }
+    }
+}
+
+
+// @İmport and partials
+@import "./font-size/font-size.scss";
+
+.container-header {
+    font-size: $fs-header;
+    color: #94151d;
+}
+
+.container-desc {
+    font-size: $fs-desc;
+    background-color: #f0ffff;
+}
+
+// @mixin and @inculed
+
+@mixin button($bg_color, $fs:8px) { // $fs:8px is default parameter
+    border-radius: 4px;
+    color: #fff;
+    padding: 3px;
+    cursor: pointer;
+    background-color: $bg_color;
+    font-size: $fs;
+}
+
+.mixin-and-include {
+    margin-top: 5px;
+    border: 1px solid #aea8a8;
+    padding: 8px;
+
+    .btn-save {
+        @include button(#0b17ba, 13px);
+    }
+
+    .btn-cancel {
+        @include button( #94151d);
+    }
+}
+
+// @extend
+.card {
+    border: 1px solid #eee;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 8px 0 rgba(72, 70, 70, 0.8);
+}
+
+.extend {
+    margin-top: 12px;
+    border: 1px solid #2d1d1d;
+    .card-1 {
+        @extend .card;
+        background-color: #0b17ba;
+    }
+    
+    .card-2 {
+        @extend .card;
+        background-color: #ff0000;
+    }
+}
+
+// String Functions
+.string-func {
+    border: 1px solid gray;
+    margin-top: 8px;
+
+    h3 {
+        text-align: center;
+    }
+    ul {
+        padding: 0 10px;
+        li {
+            list-style: none;
+            border: 1px solid grey;
+            padding: 8px;
+        }
+    }
+}
+
+.quote::after {
+    content: quote($string: "Assigning content to element"); // element içerik
+}
+
+.str-index::after {
+    content: '' + str-index($string: "Find index of character", $substring: "o"); // karakterin sırasını bulur
+}
+
+.str-insert::after {
+    content: str-insert($string: "Adding words to a sentence", $insert: '(WORD) ', $index: 8); // Cümleye karakter/kelime atama
+}
+
+.str-length::after {
+    content: '' + str-length($string: "Returns the number of characters in the sentence"); // Belirtilen cümle kaç karakterden oluştuğu bilgisini verir
+}
+
+.str-slice::after {
+    content: str-slice($string: "Cut a (TEST) field in a sentence", $start-at: 7, $end-at: 13); // Cümle içerisindeki belirtilen alanı getirir
+}
+
+.to-lower-case::after {
+    content: to-lower-case($string: "Makes alL CharaCters LoWercAse"); // Tüm harfleri küçük harfe çevirir 
+}
+
+.to-upper-case::after {
+    content: to-upper-case($string: "Capitalizes All Characters"); // Tüm harfleri büyük harfe çevirir 
+}
+
+.unique-id::after {
+    content: '' + unique-id();  // Benzersiz bir id oluşturur.
+}
+
+.unquote::after{
+    content: '' + unquote($string: "Changes the content"); // İçeriği değiştirir.
+}
+
+// Numeric Functions
+
+.numeric-func {
+    @extend .string-func;
+}
+
+.abs::after {
+    content: '' + abs($number: -10); // Değeri daima pozitif olarak çevirir.
+}
+
+.ceil::after {
+    content: '' + ceil($number: 13.25); // Her zaman bir üst tam sayıya yuvarlar
+}
+
+.floor::after {
+    content: '' + floor($number: 13.25); //Her zaman bir alt tam sayıya yuvarlar
+}
+
+.round::after {
+    content: '' + round($number: 13.25); // En yakın tam sayıya yuvarlar
+}
+
+.max::after {
+    content: '' + max(1, 2, 3 ,4 , -1, 5, 8, 0, 7); // Verilen sayılar arasındaki en büyük değeri verir.
+}
+
+.min::after {
+    content: '' + min(1, 2, 3 ,4 , -1, 5, 8, 0, 7); // Verilen sayılar arasındaki en büyük değeri verir.
+}
+
+.percentage::after {
+    content: '' + percentage(11.25); // noktayı kaldırıp yüzdelik olarak gösterir.(1125%)
+}
+
+.random::after {
+    content: '' + random(); // 0 ile 1 arasında rastgele değer üretir.
+}
+
+.random2::after {
+    content: '' + random(43); // 0 ile belirtilen değer arasında rastgele değer üretir.
+}
+
+.comparable::after {
+    content: '' + comparable($number1: 18px, $number2: 7em); // Verilen iki değerin karşılaştırılabilir durumunu kontrol eder
+}
+
+// List Functions
+.list-func {
+    @extend .string-func;
+
+    .append::after {
+        content: ''  + append((1, 2, 3), 5 8, space); //auto aradaki virgülleri de yazar/ space ise aradaki virgülleri yazmaz
+    }
+
+    .index::after {
+        content: '' + index($list: (1, 2, 3, 4, 5), $value: 4); // Belirtilen elemanın listedeki sırasını verir.
+    }
+    
+    .is-bracketed::after {
+        content: '' + is-bracketed([]); // Değişkenin dizi olup olmadığını kontrol eder.
+    }
+    
+    .join::after {
+        content: '' + join($list1: (1, 2, 3), $list2: (4, 5, 6) , $separator: space, $bracketed: true); // Verilen iki listeyi birleştirir. Burada separator aradaki virgülleri temsil eder(space virgülleri almaz, auto ise aradaki virgülleri alır).  $bracketed: true olması ise bir dizi formatına dönüştürür.
+    }
+    
+    .length::after {
+        content: '' + length($list: (1, 2, 3, 4, 51, 18)); // liste kaç elemandan oluştuğu bilgisini verir.
+    }
+    
+    .list-separator::after {
+        content: '' + list-separator((1, 2, 3)); // elemanlar arasındaki karakterin ne olduğu bilgisini verir(Sadece boşluk ya da virgül olabilir.).
+    }
+    
+    .nth::after {
+        content: '' + nth($list: (a, X, 3, z, Y, 15), $n: 2 ); // verilen sıraya karşılık gelen listedeki elemanı verir.
+    }
+    
+    .set-nth::after {
+        content: '' + set-nth($list: (a, X, 3, z, Y, 15), $n: 2, $value: y); // Belirtilen listedeki sıraya karşılık gelen elemanı değiştirip yeni liste formatını verir.
+    }
+    
+    .zip::after {
+        content: '' + zip(Ahmet Hasan Kasım, Yıldız Bakır Yurt, 13 27 21); // Verilen listelerdeki elemanların indexlere göre birleştirir.
+    }
+}
+
+//map fuunctions
+$colors: (header: #ff0000, description: #ffff00, body: #008000);
+$font_size: (header2: #a52a2a);
+.map-func {
+    @extend .string-func;
+    
+    .map-get::after {
+        content: '' + map-get($map: $colors, $key: description); // Belirtilen listede key kısmına karşılık gelen elemanın value kısmını verir.
+    }
+
+    .map-has-key::after {
+        content: '' + map-has-key($map: $colors, $key: header); // Belirtilen liste içerisinde header key kısmına sahip eleman var mı kontrolünü yapar.
+    }
+
+    .map-keys::after {
+        content: '' + map-keys($map: $colors); // Belirtilen listedeki key kısımlarını verir.
+    }
+
+    .map-values::after {
+        content: '' + map-values($map: $colors); // Belirtilen listedeki value kısımlarını verir.
+    }
+
+    .map-merge::after {
+        content: '' + map-merge(("red": #ff0000, "green": #00ff00), ("blue": #0000ff)) // iki listeyi key ve value ile birlikte birleştirir.
+    }
+    
+    .map-remove::after {
+        content: '' + map-remove($map: $colors, $keys: header ); // Listede key kısmına karşılık gelen elemanı siler ve listeyi verir.
+    }
+}
+
+.selector-func {
+    @extend .string-func;
+
+    .selector-superselector::after {
+        
+        content: '' + is-superselector("p", "p.b") //$super içinde belirtilen seçicinin $sub içinde belirtilen tüm öğelerle eşleşip eşleşmediğini gösteren bir Boole değeri döndürür
+    }
+
+    .selector-append::after {
+        content: '' + selector-append(p, ".foo"); //İkinci ve sonraki seçicilerin birinciye boşluksuz eklendiği yeni bir seçici döndürür.
+    }
+
+    .selector-nest::after {
+        content: '' + selector-nest(p, h1, ".foo"); //Sağlanan listeye dayalı olarak iç içe geçmiş bir CSS seçici listesi içeren yeni bir seçici döndürür.
+    }
+
+    .selector-parse::after {
+        content: '' + selector-parse("p .a .b .c"); //Üst seçici ile aynı biçimi kullanan $selector içinde bulunan dizelerin bir listesini döndürür &
+    }
+
+    .selector-replace::after {
+        content: '' + selector-replace("p .italics", ".italics", ".bold"); //$original içinde belirtilen seçici(ler)in yerine $replacement içinde belirtilen seçici(ler) ile yeni bir seçici döndürür
+    }
+
+    .selector-unify::after {
+        content: '' + selector-unify('p', '.temp'); // Herhangi birisinin önünde nokta varsa diğerinin alt elementi olarak döndürür.
+    }
+
+    .simple-selector::after {
+        content: '' + simple-selectors("p.b.d"); //Bir bileşik seçici olması gereken, $selector içinde yer alan bireysel seçicilerin bir listesini döndürür. Nokta olduğu yerlerde elemanları virgülle ayırır.
+    }
+}
+
+.introspection-func {
+    @extend .string-func;
+
+    .variable-exists:after {
+        content: '' + variable-exists($name: 'div'); //Belirtilen değişkenin genel olarak mı yoksa geçerli kapsamda mı var olduğunu gösteren bir Boole değeri döndürür
+    }
+    
+    .global-variable-exists::after {
+        $a: 10px;
+        content: '' + global-variable-exists(a) ; //Belirtilen değişkenin genel düzeyde var olup olmadığını gösteren bir Boole değeri döndürür
+    }
+
+    .mixin-exists::after {
+        content: '' +  mixin-exists('inspect') //Belirtilen ozelliğin var olup olmadığını gösteren bir Boole değeri döndürür
+    }
+
+    
+    .inspect::after {
+       content: '' + inspect($value: 12); // Sass tarafından temsil edildiği şekliyle $değerini döndürür.
+    }
+
+    .type-of::after {
+        content: '' + type-of($value: 1 2 3); // içeriğin tipini verir.
+    }
+
+    .unit::after {
+        content: '' + unit($number: 18em); // girilen değerin birimini döndürür..
+    }
+
+    .unitless::after {
+        content: '' + unitless($number: 18px) ; // Belirtilen sayının kendisiyle ilişkilendirilmiş bir birimi olup olmadığını gösteren bir Boole değeri döndürür
+    }
+
+    .comparable::after {
+        content: '' + comparable($number1: 18em, $number2:18px ) ; //Belirtilen sayıların toplanıp, çıkarılamayacağını veya karşılaştırılabileceğini gösteren bir Boole değeri döndürür
+    }
+
+}
+
